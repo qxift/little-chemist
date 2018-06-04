@@ -60,6 +60,7 @@ public class PanelMix extends JPanel implements DropTargetListener{
 		 e.dropComplete(true);
 		 setVisible(true);
 		
+		 //hello testing stuff
 		 
 		 
 //		try {
