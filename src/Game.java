@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.Toolkit;
+import java.awt.datatransfer.Transferable;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DragGestureEvent;
 import java.awt.dnd.DragGestureListener;
@@ -51,20 +52,17 @@ public class Game extends JFrame implements DragGestureListener{
 		}
 		
 		pnlElement.setBackground(new Color(42,64,105));
-		pnlElement.setPreferredSize(new Dimension((int)(100+50), h)); //fire.getMaximumSize().width
+		pnlElement.setPreferredSize(new Dimension((int)(w*0.15), h)); //fire.getMaximumSize().width
 		pnlElement.setLocation((int)(w*0.8),0);
 		pnlElement.setLayout(new BoxLayout(pnlElement,BoxLayout.Y_AXIS));
 		
 		pnlMix.setBackground(new Color(19,35,73));
-		pnlMix.setSize((int)(w*0.8), h);
-		pnlMix.setLocation(0,0);
+		pnlMix.setLayout(null);
 		
 		
 		scroll = new JScrollPane(pnlElement, 
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, 
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scroll.setSize(new Dimension((int)(w*0.2), h));
-		scroll.setLocation((int)(w*0.8),0);
 		scroll.setBorder(BorderFactory.createEmptyBorder());
 		
 		this.add(pnlMix, BorderLayout.CENTER); 
@@ -72,6 +70,9 @@ public class Game extends JFrame implements DragGestureListener{
 	
 	}
 	
+	public Element getElement(int id) {
+		return elements.get(id);
+	}
 	public JPanel getMixingSpace()
 	{
 		return pnlMix;
@@ -90,9 +91,12 @@ public class Game extends JFrame implements DragGestureListener{
 
 	@Override
 	public void dragGestureRecognized(DragGestureEvent e) {
-		// TODO Auto-generated method stub
 		
-		e.startDrag(null, new IconTransferable((IconGUI)(e.getComponent())));
+		IconGUI icon = (IconGUI)(e.getComponent());
+		int id = icon.getElement().id;
+		Transferable transferable = new StringTransferable(String.valueOf(id));
+		//new IconTransferable((IconGUI)(e.getComponent()));
+		e.startDrag(null, transferable);
 		
 	}
 }

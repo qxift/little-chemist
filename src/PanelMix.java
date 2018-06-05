@@ -1,3 +1,5 @@
+import java.awt.Component;
+import java.awt.Point;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
@@ -51,40 +53,39 @@ public class PanelMix extends JPanel implements DropTargetListener{
 
 	}
 
-
 	@Override
 	public void drop(DropTargetDropEvent e) {
-		// TODO Auto-generated method stub
-		 e.acceptDrop(e.getDropAction());
-		 e.getTransferable();
-		 e.dropComplete(true);
-		 setVisible(true);
+		try {
+			DropTarget target = (DropTarget) e.getSource();
+			Component component = (Component) target.getComponent();
+			Point location = (Point) component.getMousePosition();
+			Transferable t = e.getTransferable();
+
+			if (e.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+
+				String id = (String) t.getTransferData(DataFlavor.stringFlavor);
+
+				if (id != null) {
+					e.dropComplete(true);
+					int idNum = Integer.valueOf(id);
+					addToMixPanel(location, idNum);
+					
+				}
+			} else {
+				e.rejectDrop();
+			}
+		} catch (java.io.IOException e2) {
+		} catch (UnsupportedFlavorException e2) {
+		}
+	}
+	
+	public void addToMixPanel(Point loc, int id) {
+		Element el = screen.getElement(id);
+		IconGUI iconGUI = new IconGUI(el);
 		
-		 //hello testing stuff
-		 
-		 
-//		try {
-//	        IconTransferable t = (IconTransferable)(e.getTransferable());
-//
-//	        if (e.isDataFlavorSupported(DataFlavor.stringFlavor)) {
-//	          e.acceptDrop(e.getDropAction());
-//
-//	          String s;
-//	          s = (String) t.getTransferData(DataFlavor.stringFlavor);
-//
-//	          drop.setText(s);
-//
-//	          e.dropComplete(true);
-//	          
-//	        } 
-//	        else
-//	          e.rejectDrop();
-//	}
-//	    catch (java.io.IOException e2) {
-//	    } 
-//	    catch (UnsupportedFlavorException e2) {
-//	    }
-	    
-	    
+		add(iconGUI);
+		iconGUI.setLocation(loc);
+		iconGUI.setSize(iconGUI.getPreferredSize());
+		repaint();
 	}
 }
