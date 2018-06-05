@@ -21,8 +21,8 @@ import javax.swing.ScrollPaneConstants;
 public class Game extends JFrame implements DragGestureListener{
 
 	private JScrollPane scroll;
-	private PanelMix pnlElement;
-	private JPanel pnlMix;
+	private JPanel pnlElement;
+	private PanelMix pnlMix;
 	private int w;
 	private int h;
 	private List<IconGUI> icons;
@@ -37,8 +37,8 @@ public class Game extends JFrame implements DragGestureListener{
 		h=screenSize.height;
 		setSize(w,h);
 
-		pnlElement = new PanelMix(this);
-		pnlMix = new JPanel();
+		pnlMix = new PanelMix(this);
+		pnlElement = new JPanel();
 		for(int i = 0; i<4; i++)
 		{
 			IconGUI icon = new IconGUI(elements.get(i));
