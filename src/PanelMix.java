@@ -96,6 +96,20 @@ public class PanelMix extends JPanel implements DropTargetListener, MouseListene
 		repaint();
 		
 	}
+	
+	public void removeFromMixPanel(IconGUI iconGUI) {
+		
+		if(iconGUI!=null)
+		{
+			iconGUI.removeMouseListener(this);
+			iconGUI.removeMouseMotionListener(this);
+			
+			remove(iconGUI);
+			repaint();
+		}
+		
+		
+	}
 
 
 	@Override
@@ -185,6 +199,8 @@ public class PanelMix extends JPanel implements DropTargetListener, MouseListene
 		{
 			addToMixPanel(icon1.getLocation(),result.id);
 			selected = null;
+			removeFromMixPanel(icon1);
+			removeFromMixPanel(icon2);
 		}
 	}
 }
