@@ -92,32 +92,11 @@
     },
     {
       "ingredients": [
-      ],
-      "results": [
-        4
-      ]
-    },
-    {
-      "ingredients": [
-      ],
-      "results": [
-        1
-      ]
-    },
-    {
-      "ingredients": [
         5,
         5
       ],
       "results": [
         14
-      ]
-    },
-    {
-      "ingredients": [
-      ],
-      "results": [
-        15
       ]
     }
   ]

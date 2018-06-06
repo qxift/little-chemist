@@ -22,9 +22,11 @@ public class PanelElement extends JPanel implements DragGestureListener{
 		
 		icons = new ArrayList<IconGUI>();
 		
-		for(int i = 0; i<6; i++)
+		for(int i = 0; i < elements.size(); i++)
 		{
-			addIcon(i);
+			if (elements.get(i).ingredients.size() == 0) {
+				addIcon(i);
+			}
 		}		
 		setBackground(new Color(42,64,105));
 		setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
