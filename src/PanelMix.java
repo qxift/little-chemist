@@ -157,7 +157,7 @@ public class PanelMix extends JPanel implements DropTargetListener, MouseListene
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub		
-		selected = (IconGUI) e.getSource();		
+		selected = (IconGUI) e.getSource();	
 	}
 
 

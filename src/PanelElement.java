@@ -4,6 +4,7 @@ import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DragGestureEvent;
 import java.awt.dnd.DragGestureListener;
 import java.awt.dnd.DragSource;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BoxLayout;
@@ -12,13 +13,16 @@ import javax.swing.JPanel;
 public class PanelElement extends JPanel implements DragGestureListener{
 
 	private Game game;
+	private List<IconGUI> icons;
 	
 	public PanelElement(Game panel, List<Element> elements)
 	{
 		super();
 		game = panel;
 		
-		for(int i = 0; i<4; i++)
+		icons = new ArrayList<IconGUI>();
+		
+		for(int i = 0; i<6; i++)
 		{
 			addIcon(i);
 		}		
@@ -33,7 +37,15 @@ public class PanelElement extends JPanel implements DragGestureListener{
 		DragSource ds = new DragSource();
 		ds.createDefaultDragGestureRecognizer(icon, DnDConstants.ACTION_COPY, this);
 		
+		for(int i = 0; i<icons.size(); i++)
+		{
+			if(icons.get(i).getElement().id==icon.getElement().id)
+			{
+				return icon;
+			}
+		}
 		add(icon);
+		icons.add(icon);
 		return icon;
 	}
 	
