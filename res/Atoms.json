@@ -82,8 +82,8 @@
     },
     {
       "ingredients": [
-        3,
-        3
+        4,
+        4
       ],
       "results": [
         13
@@ -91,8 +91,6 @@
     },
     {
       "ingredients": [
-        4,
-        4
       ],
       "results": [
         4
@@ -100,8 +98,6 @@
     },
     {
       "ingredients": [
-        1,
-        1
       ],
       "results": [
         1
