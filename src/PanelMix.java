@@ -15,14 +15,11 @@ import javax.swing.JPanel;
 public class PanelMix extends JPanel implements DropTargetListener{
 
 	private Game screen;
-	private IconGUI drop;
-	private DropTarget thing;
 	
 	public PanelMix(Game panel)
 	{
-		screen = panel; //right?
-		thing = new DropTarget(screen, DnDConstants.ACTION_MOVE, this, true, null);	
-		setVisible(true);
+		screen = panel;
+		new DropTarget(screen, DnDConstants.ACTION_MOVE, this, true, null);	
 	}
 
 
