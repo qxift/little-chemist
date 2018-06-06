@@ -81,6 +81,7 @@ public class PanelMix extends JPanel implements DropTargetListener{
 		IconGUI iconGUI = new IconGUI(el);
 		
 		add(iconGUI);
+		loc.setLocation(loc.getX() - 20, loc.getY() - 30);
 		iconGUI.setLocation(loc);
 		iconGUI.setSize(iconGUI.getPreferredSize());
 		repaint();

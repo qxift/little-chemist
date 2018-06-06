@@ -30,11 +30,10 @@ public class DataParsing {
             
             do {
             		name = (String)names.get(String.valueOf(i));
-            		i++;
             		if (name != null) {
             			elements.add(new Element(i, name));
             		}
-            	
+            		i++;
             } while (name != null);
             
             JSONArray recipes = (JSONArray) jsonObject.get("recipes");
