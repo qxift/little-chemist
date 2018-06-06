@@ -14,7 +14,8 @@
     "11": "H2O",
     "12": "graphite",
     "13": "chalk",
-    "14": "salt"
+    "14": "salt",
+    "15": "Cl"
   },
   "recipes": [
     {
@@ -110,6 +111,13 @@
       ],
       "results": [
         14
+      ]
+    },
+    {
+      "ingredients": [
+      ],
+      "results": [
+        15
       ]
     }
   ]
