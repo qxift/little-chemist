@@ -20,6 +20,7 @@ public class PanelMix extends JPanel implements DropTargetListener, MouseListene
 
 	private Game screen;
 	private IconGUI selected;
+	private int xPressed, yPressed;
 	
 	public PanelMix(Game panel)
 	{
@@ -100,7 +101,7 @@ public class PanelMix extends JPanel implements DropTargetListener, MouseListene
 		iconGUI.addMouseListener(this);
 		iconGUI.addMouseMotionListener(this);
 		add(iconGUI);
-		loc.setLocation(loc.getX() - 20, loc.getY() - 30);
+		loc.setLocation(loc.getX(), loc.getY());
 		iconGUI.setLocation(loc);
 		iconGUI.setSize(iconGUI.getPreferredSize());
 		
@@ -129,7 +130,7 @@ public class PanelMix extends JPanel implements DropTargetListener, MouseListene
 		{
 			int savedX = selected.getX();
 			int savedY = selected.getY();			
-			selected.setLocation(savedX+e.getX(),savedY+e.getY());
+			selected.setLocation(savedX+e.getX()-xPressed,savedY+e.getY()-yPressed);
 			
 			IconGUI test = collision(selected);
 			if(test!=null)
@@ -158,6 +159,9 @@ public class PanelMix extends JPanel implements DropTargetListener, MouseListene
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub		
 		selected = (IconGUI) e.getSource();	
+		xPressed = e.getX();
+		yPressed = e.getY();
+		
 	}
 
 
