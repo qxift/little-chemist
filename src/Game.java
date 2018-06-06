@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.List;
 import java.awt.Toolkit;
 
@@ -17,7 +18,7 @@ public class Game extends JFrame {
 	
 	public Game()
 	{
-		elements = DataParsing.parseJson("../little-chemist/res/Rules.json");
+		elements = DataParsing.parseJson("../little-chemist/res/Atoms.json");
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int w=screenSize.width;
 		int h=screenSize.height;

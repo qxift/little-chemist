@@ -20,7 +20,7 @@ public class IconGUI extends JLabel implements ActionListener{
 	{
 		super();
 		setMinimumSize(new Dimension(50,50));
-		setMaximumSize(new Dimension(50,50));
+		setMaximumSize(new Dimension(100,50));
 		element = other;
 		setText(element.name);
 		
