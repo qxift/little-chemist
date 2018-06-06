@@ -34,7 +34,6 @@ public class PanelElement extends JPanel implements DragGestureListener{
 		ds.createDefaultDragGestureRecognizer(icon, DnDConstants.ACTION_COPY, this);
 		
 		add(icon);
-		//repaint();
 		return icon;
 	}
 	
