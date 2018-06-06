@@ -21,28 +21,30 @@ public class PanelElement extends JPanel implements DragGestureListener{
 		for(int i = 0; i<4; i++)
 		{
 			addIcon(i);
-		}
-		
+		}		
 		setBackground(new Color(42,64,105));
 		setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-
 	}
 	
 	public IconGUI addIcon(int id)
 	{
 		IconGUI icon = new IconGUI(game.getElement(id));
+		
 		DragSource ds = new DragSource();
 		ds.createDefaultDragGestureRecognizer(icon, DnDConstants.ACTION_COPY, this);
+		
 		add(icon);
+		//repaint();
 		return icon;
 	}
+	
 	@Override
-	public void dragGestureRecognized(DragGestureEvent e) {
+	public void dragGestureRecognized(DragGestureEvent e) 
+	{
 		IconGUI icon = (IconGUI)(e.getComponent());
 		int id = icon.getElement().id;
 		Transferable transferable = new StringTransferable(String.valueOf(id));
 		//new IconTransferable((IconGUI)(e.getComponent()));
-		e.startDrag(null, transferable);
-		
+		e.startDrag(null, transferable);		
 	}
 }

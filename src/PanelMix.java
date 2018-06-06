@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Point;
 import java.awt.datatransfer.DataFlavor;
@@ -12,7 +13,6 @@ import java.awt.dnd.DropTargetListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.util.List;
 
 import javax.swing.JPanel;
 
@@ -26,8 +26,9 @@ public class PanelMix extends JPanel implements DropTargetListener, MouseListene
 		screen = panel;
 		new DropTarget(screen, DnDConstants.ACTION_MOVE, this, true, null);	
 		
+		setBackground(new Color(19,35,73));
+		setLayout(null);		
 	}
-
 
 	@Override
 	public void dragEnter(DropTargetDragEvent dtde) {
@@ -57,48 +58,57 @@ public class PanelMix extends JPanel implements DropTargetListener, MouseListene
 	}
 
 	@Override
-	public void drop(DropTargetDropEvent e) {
-		try {
+	public void drop(DropTargetDropEvent e) 
+	{
+		try 
+		{
 			DropTarget target = (DropTarget) e.getSource();
 			Component component = (Component) target.getComponent();
 			Point location = (Point) component.getMousePosition();
 			Transferable t = e.getTransferable();
 
-			if (e.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+			if (e.isDataFlavorSupported(DataFlavor.stringFlavor)) 
+			{
 
 				String id = (String) t.getTransferData(DataFlavor.stringFlavor);
 
-				if (id != null) {
+				if (id != null) 
+				{
 					e.dropComplete(true);
 					int idNum = Integer.valueOf(id);
-					addToMixPanel(location, idNum);
-					
+					addToMixPanel(location, idNum);					
 				}
-			} else {
+			} 
+			else 
+			{
 				e.rejectDrop();
 			}
-		} catch (java.io.IOException e2) {
-		} catch (UnsupportedFlavorException e2) {
+		} 
+		catch (java.io.IOException e2) 
+		{
+		} 
+		catch (UnsupportedFlavorException e2) 
+		{
 		}
 	}
 	
-	public void addToMixPanel(Point loc, int id) {
+	public void addToMixPanel(Point loc, int id) 
+	{
 		Element el = screen.getElement(id);
-		IconGUI iconGUI = new IconGUI(el);
 		
+		IconGUI iconGUI = new IconGUI(el);
 		iconGUI.addMouseListener(this);
 		iconGUI.addMouseMotionListener(this);
-		
 		add(iconGUI);
 		loc.setLocation(loc.getX() - 20, loc.getY() - 30);
 		iconGUI.setLocation(loc);
 		iconGUI.setSize(iconGUI.getPreferredSize());
-		repaint();
 		
+		repaint();		
 	}
 	
-	public void removeFromMixPanel(IconGUI iconGUI) {
-		
+	public void removeFromMixPanel(IconGUI iconGUI) 
+	{	
 		if(iconGUI!=null)
 		{
 			iconGUI.removeMouseListener(this);
@@ -106,21 +116,19 @@ public class PanelMix extends JPanel implements DropTargetListener, MouseListene
 			
 			remove(iconGUI);
 			repaint();
-		}
-		
-		
+		}	
 	}
 
 
 	@Override
-	public void mouseDragged(MouseEvent e) {
+	public void mouseDragged(MouseEvent e) 
+	{
 		// TODO Auto-generated method stub
 		
 		if (selected!=null)
 		{
 			int savedX = selected.getX();
-			int savedY = selected.getY();
-			
+			int savedY = selected.getY();			
 			selected.setLocation(savedX+e.getX(),savedY+e.getY());
 			
 			IconGUI test = collision(selected);
@@ -129,7 +137,6 @@ public class PanelMix extends JPanel implements DropTargetListener, MouseListene
 				combine(selected,test);
 			}
 		}
-
 	}
 
 
@@ -149,19 +156,15 @@ public class PanelMix extends JPanel implements DropTargetListener, MouseListene
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-		selected = (IconGUI) e.getSource();
-		
+		// TODO Auto-generated method stub		
+		selected = (IconGUI) e.getSource();		
 	}
 
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-		selected = null;
-		
+		// TODO Auto-generated method stub	
+		selected = null;		
 	}
 
 
@@ -180,8 +183,7 @@ public class PanelMix extends JPanel implements DropTargetListener, MouseListene
 	
 	public IconGUI collision(IconGUI icon)
 	{
-		Component[] arr = this.getComponents();
-		
+		Component[] arr = this.getComponents();		
 		for(Component icoon: arr)
 		{
 			if(icon!=icoon && icon.getBounds().intersects(icoon.getBounds()))
@@ -201,6 +203,8 @@ public class PanelMix extends JPanel implements DropTargetListener, MouseListene
 			selected = null;
 			removeFromMixPanel(icon1);
 			removeFromMixPanel(icon2);
+			
+//			screen.getPnlElement().addIcon(result.id);
 		}
 	}
 }

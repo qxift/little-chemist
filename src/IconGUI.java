@@ -11,14 +11,11 @@ public class IconGUI extends JLabel {
 		setMinimumSize(new Dimension(50,50));
 		setMaximumSize(new Dimension(100,50));
 		element = other;
-		setText(element.name);
-		
+		setText(element.name);	
 	}
 	
 	public Element getElement()
 	{
 		return element;
-	}
-
-	
+	}	
 }

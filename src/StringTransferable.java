@@ -7,24 +7,28 @@ public class StringTransferable implements Transferable {
 
 	private String id = "";
 
-	public StringTransferable(String elementName) {
+	public StringTransferable(String elementName) 
+	{
 	  id = elementName;
 	}
 
-	public DataFlavor[] getTransferDataFlavors() {
+	public DataFlavor[] getTransferDataFlavors() 
+	{
       return new DataFlavor[]{DataFlavor.stringFlavor};
     }
 
-    public boolean isDataFlavorSupported(DataFlavor flavor) {
+    public boolean isDataFlavorSupported(DataFlavor flavor) 
+    {
 
-      if (!isDataFlavorSupported(flavor)) {
+      if (!isDataFlavorSupported(flavor)) 
+      {
         return false;
       }
       return true;
     }
 
-    public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
-
+    public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException 
+    {
       return id;
     }
 }
