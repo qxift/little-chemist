@@ -1,18 +1,7 @@
-import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
-public class IconGUI extends JLabel implements ActionListener{
+public class IconGUI extends JLabel {
 
 	private Element element;
 	
@@ -31,10 +20,5 @@ public class IconGUI extends JLabel implements ActionListener{
 		return element;
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 }

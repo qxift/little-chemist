@@ -38,13 +38,11 @@ public class PanelElement extends JPanel implements DragGestureListener{
 	}
 	@Override
 	public void dragGestureRecognized(DragGestureEvent e) {
-		System.out.println("yellow");
 		IconGUI icon = (IconGUI)(e.getComponent());
 		int id = icon.getElement().id;
 		Transferable transferable = new StringTransferable(String.valueOf(id));
 		//new IconTransferable((IconGUI)(e.getComponent()));
 		e.startDrag(null, transferable);
-		System.out.print(id);
 		
 	}
 }

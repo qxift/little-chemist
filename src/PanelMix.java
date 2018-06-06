@@ -9,17 +9,23 @@ import java.awt.dnd.DropTargetDragEvent;
 import java.awt.dnd.DropTargetDropEvent;
 import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.util.List;
 
 import javax.swing.JPanel;
 
-public class PanelMix extends JPanel implements DropTargetListener{
+public class PanelMix extends JPanel implements DropTargetListener, MouseListener, MouseMotionListener{
 
 	private Game screen;
+	private IconGUI selected;
 	
 	public PanelMix(Game panel)
 	{
 		screen = panel;
 		new DropTarget(screen, DnDConstants.ACTION_MOVE, this, true, null);	
+		
 	}
 
 
@@ -80,10 +86,105 @@ public class PanelMix extends JPanel implements DropTargetListener{
 		Element el = screen.getElement(id);
 		IconGUI iconGUI = new IconGUI(el);
 		
+		iconGUI.addMouseListener(this);
+		iconGUI.addMouseMotionListener(this);
+		
 		add(iconGUI);
 		loc.setLocation(loc.getX() - 20, loc.getY() - 30);
 		iconGUI.setLocation(loc);
 		iconGUI.setSize(iconGUI.getPreferredSize());
 		repaint();
+		
+	}
+
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+		if (selected!=null)
+		{
+			int savedX = selected.getX();
+			int savedY = selected.getY();
+			
+			selected.setLocation(savedX+e.getX(),savedY+e.getY());
+			
+			IconGUI test = collision(selected);
+			if(test!=null)
+			{
+				combine(selected,test);
+			}
+		}
+
+	}
+
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+		selected = (IconGUI) e.getSource();
+		
+	}
+
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+		selected = null;
+		
+	}
+
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public IconGUI collision(IconGUI icon)
+	{
+		Component[] arr = this.getComponents();
+		
+		for(Component icoon: arr)
+		{
+			if(icon!=icoon && icon.getBounds().intersects(icoon.getBounds()))
+			{
+				return (IconGUI)icoon;
+			}
+		}
+		return null;
+	}
+	
+	public void combine (IconGUI icon1, IconGUI icon2)
+	{
+		Element result = screen.mix(icon1.getElement(), icon2.getElement());
+		if(result!=null)
+		{
+			addToMixPanel(icon1.getLocation(),result.id);
+			selected = null;
+		}
 	}
 }

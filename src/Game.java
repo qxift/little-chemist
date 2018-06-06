@@ -50,4 +50,22 @@ public class Game extends JFrame {
 		gr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
+	
+	public Element mix (Element element1, Element element2)
+	{
+		for(Element el: elements)
+		{
+			List<Long> ingredients = el.ingredients;
+			if (ingredients!=null && ingredients.size()==2)
+			{
+				if ((ingredients.get(0) ==element1.id && ingredients.get(1)==element2.id) 
+						|| (ingredients.get(0)==element2.id && ingredients.get(1)==element1.id))
+				{
+					return el;
+				}	
+			}
+			
+		}
+		return null;
+	}
 }
