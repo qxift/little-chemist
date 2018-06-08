@@ -6,16 +6,23 @@
     "3": "H",
     "4": "Ca",
     "5": "Na",
-    "6": "N2",
+    "6": "liquid nitrogen",
     "7": "pollution",
-    "8": "Ca3N2",
-    "9": "O2",
-    "10": "CO2",
-    "11": "H2O",
+    "8": "cracked mud",
+    "9": "oxygen",
+    "10": "carbon dioxide",
+    "11": "water",
     "12": "graphite",
     "13": "chalk",
     "14": "salt",
-    "15": "Cl"
+    "15": "Cl",
+    "16": "chlorine",
+    "17": "hydrochloric acid",
+    "18": "ammonia",
+    "19": "ozone",
+    "20": "methane",
+    "21": "ethanol"
+
   },
   "recipes": [
     {
@@ -93,10 +100,64 @@
     {
       "ingredients": [
         5,
-        5
+        15
       ],
       "results": [
         14
+      ]
+    },
+    {
+      "ingredients": [
+        15,
+        15
+      ],
+      "results": [
+        16
+      ]
+    },
+    {
+      "ingredients": [
+        15,
+        3
+      ],
+      "results": [
+        17
+      ]
+    },
+    {
+      "ingredients": [
+        0,
+        3
+      ],
+      "results": [
+        18
+      ]
+    }
+    {
+      "ingredients": [
+        1,
+        9
+      ],
+      "results": [
+        19
+      ]
+    },
+    {
+      "ingredients": [
+        2,
+        3
+      ],
+      "results": [
+        20
+      ]
+    },
+    {
+      "ingredients": [
+        20,
+        11
+      ],
+      "results": [
+        21
       ]
     }
   ]
