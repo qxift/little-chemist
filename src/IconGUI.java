@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -11,6 +12,8 @@ public class IconGUI extends JLabel {
 	{
 		super(new ImageIcon("../little-chemist/images/" + other.name + ".jpg"));
 		element = other;
+		this.setForeground(Color.WHITE);
+		setText(element.name);
 	}
 	
 	public Element getElement()

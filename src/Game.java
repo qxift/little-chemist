@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Point;
 import java.util.List;
 import java.awt.Toolkit;
 import javax.swing.BorderFactory;
@@ -37,6 +38,13 @@ public class Game extends JFrame {
 	
 	public Element getElement(int id) {
 		return elements.get(id);
+	}
+	
+	public void addToMix(int id)
+	{
+		int randWidth = (int)(Math.random()*(pnlMix.getWidth()-200))+50;
+		int randHeight = (int)(Math.random()*(pnlMix.getHeight()-200))+50;
+		pnlMix.addToMixPanel(new Point(randWidth,randHeight), id);
 	}
 	
 	public Element mix (Element element1, Element element2)

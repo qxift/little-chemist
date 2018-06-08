@@ -4,13 +4,16 @@ import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DragGestureEvent;
 import java.awt.dnd.DragGestureListener;
 import java.awt.dnd.DragSource;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
-public class PanelElement extends JPanel implements DragGestureListener{
+public class PanelElement extends JPanel implements DragGestureListener, MouseListener {
 
 	private Game game;
 	private List<IconGUI> icons;
@@ -30,14 +33,17 @@ public class PanelElement extends JPanel implements DragGestureListener{
 		}		
 		setBackground(new Color(42,64,105));
 		setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+		
 	}
 	
 	public IconGUI addIcon(int id)
 	{
 		IconGUI icon = new IconGUI(game.getElement(id));
 		
+		icon.addMouseListener(this);
 		DragSource ds = new DragSource();
 		ds.createDefaultDragGestureRecognizer(icon, DnDConstants.ACTION_COPY, this);
+		
 		
 		for(int i = 0; i<icons.size(); i++)
 		{
@@ -60,4 +66,37 @@ public class PanelElement extends JPanel implements DragGestureListener{
 		//new IconTransferable((IconGUI)(e.getComponent()));
 		e.startDrag(null, transferable);		
 	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		int id = ((IconGUI)(e.getSource())).getElement().id;
+		game.addToMix(id);
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 }

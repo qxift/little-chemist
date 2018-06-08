@@ -101,7 +101,7 @@ public class PanelMix extends JPanel implements DropTargetListener, MouseListene
 		iconGUI.addMouseListener(this);
 		iconGUI.addMouseMotionListener(this);
 		add(iconGUI);
-		loc.setLocation(loc.getX(), loc.getY());
+		loc.setLocation(loc.getX()-50, loc.getY()-75);
 		iconGUI.setLocation(loc);
 		iconGUI.setSize(iconGUI.getPreferredSize());
 		
