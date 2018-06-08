@@ -81,7 +81,7 @@ public class DataParsing {
 	}
 	public static void main(String[] args) {
 
-        // parseJson("/Users/Margo/ws/git-repos/little-chemist/res/Rules.json");
+        // parseJson("../little-chemist/res/Atoms.json");
         parseJson("../little-chemist/res/Rules.json");
     }
 }
