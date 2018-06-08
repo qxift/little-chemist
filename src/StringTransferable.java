@@ -20,11 +20,16 @@ public class StringTransferable implements Transferable {
     public boolean isDataFlavorSupported(DataFlavor flavor) 
     {
 
-      if (!isDataFlavorSupported(flavor)) 
-      {
-        return false;
-      }
-      return true;
+      if(flavor.equals(DataFlavor.stringFlavor))
+    	  return true;
+      return false;
+      
+//    	
+//    	if (!isDataFlavorSupported(flavor)) 
+//      {
+//        return false;
+//      }
+//      return true;
     }
 
     public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException 

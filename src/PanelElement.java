@@ -4,7 +4,6 @@ import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DragGestureEvent;
 import java.awt.dnd.DragGestureListener;
 import java.awt.dnd.DragSource;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -39,11 +38,11 @@ public class PanelElement extends JPanel implements DragGestureListener, MouseLi
 	public IconGUI addIcon(int id)
 	{
 		IconGUI icon = new IconGUI(game.getElement(id));
-		
 		icon.addMouseListener(this);
-		DragSource ds = new DragSource();
-		ds.createDefaultDragGestureRecognizer(icon, DnDConstants.ACTION_COPY, this);
 		
+		DragSource ds = new DragSource(); //drag initiator
+		ds.createDefaultDragGestureRecognizer(icon, DnDConstants.ACTION_COPY, this); //copies icon from panel element
+		//?
 		
 		for(int i = 0; i<icons.size(); i++)
 		{
@@ -63,7 +62,6 @@ public class PanelElement extends JPanel implements DragGestureListener, MouseLi
 		IconGUI icon = (IconGUI)(e.getComponent());
 		int id = icon.getElement().id;
 		Transferable transferable = new StringTransferable(String.valueOf(id));
-		//new IconTransferable((IconGUI)(e.getComponent()));
 		e.startDrag(null, transferable);		
 	}
 

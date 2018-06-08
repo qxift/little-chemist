@@ -25,7 +25,7 @@ public class PanelMix extends JPanel implements DropTargetListener, MouseListene
 	public PanelMix(Game panel)
 	{
 		screen = panel;
-		new DropTarget(screen, DnDConstants.ACTION_MOVE, this, true, null);	
+		new DropTarget(screen, DnDConstants.ACTION_MOVE, this, true, null);	//? required...
 		
 		setBackground(new Color(19,35,73));
 		setLayout(null);		
@@ -65,7 +65,7 @@ public class PanelMix extends JPanel implements DropTargetListener, MouseListene
 		{
 			DropTarget target = (DropTarget) e.getSource();
 			Component component = (Component) target.getComponent();
-			Point location = (Point) component.getMousePosition();
+			Point location = (Point) component.getMousePosition(); //find location to drop
 			Transferable t = e.getTransferable();
 
 			if (e.isDataFlavorSupported(DataFlavor.stringFlavor)) 
@@ -129,7 +129,7 @@ public class PanelMix extends JPanel implements DropTargetListener, MouseListene
 		if (selected!=null)
 		{
 			int savedX = selected.getX();
-			int savedY = selected.getY();			
+			int savedY = selected.getY();	
 			selected.setLocation(savedX+e.getX()-xPressed,savedY+e.getY()-yPressed);
 			
 			IconGUI test = collision(selected);
@@ -207,8 +207,6 @@ public class PanelMix extends JPanel implements DropTargetListener, MouseListene
 			selected = null;
 			removeFromMixPanel(icon1);
 			removeFromMixPanel(icon2);
-			
-//			screen.getPnlElement().addIcon(result.id);
 		}
 	}
 }
